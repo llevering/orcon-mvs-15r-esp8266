@@ -1,0 +1,58 @@
+esphome:
+  name: mv_control
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "MV Fallback Hotspot"
+    password: !secret fallback_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+output:
+  - platform: esp8266_pwm
+    pin: D6
+    frequency: 10000 Hz
+    id: mv_pwm_out
+    inverted: true
+
+switch:
+  - platform: gpio
+    id: bypass
+    name: "mv_unit_speed_bypass"
+    pin: 
+      number: D8
+      inverted: True 
+
+light:
+  - platform: monochromatic
+    output: mv_pwm_out
+    name: "mv_unit_speed"
+    gamma_correct: 1
+
+sensor:
+  - platform: pulse_counter
+    pin: D2
+    name: "mv_tacho"
+    force_update: true
+    update_interval: 5s
+    accuracy_decimals: 0
+    internal_filter: 250us
+  - platform: pulse_width
+    pin: D1
+    name: "mv_speed_requested"
+    update_interval: 5s
+    accuracy_decimals: 5
