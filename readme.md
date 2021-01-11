@@ -4,7 +4,7 @@ By default the Orcon mechanical ventilation unit doesn't support any 'smart' con
 In the file 'MV-control schema.pdf' you will find the different blocks that together form the schema of the control board. I intended to design a pcb therefore the drawings were made in EasyEDA, but in the end I decided to solder everything myself.
 
 Most components should be clear from the schematics, but a few are not self-explainatory:
-1. The connector female to the mainboard of the MV unit itself should be a 'JST PH 4-pin female' (I cannot recommend a good one, as the ones I bought didn't fit to well, but it did work).
+1. The connector female to the mainboard of the MV unit itself should be a 'JST PH 4-pin female' (recommendation from Gerard33: https://nl.aliexpress.com/item/33024685895.html).
 2. The connector header where the female plug from the fan should connect to is a JST PH 4-pin female (again the unit I ordered didn't fit to well).
 3. Any 5v low-active relay will work, 5v or 3.3 high active would work as well. You just need to readjust the 'Bypass relay block' (I used: https://www.tinytronics.nl/shop/nl/diversen/relais/5v-relais-1-channel-laag-actief)
 4. For the ESP board I use the Wemos D1 mini v3.1.0, but any ESP8266 will do as long as you can wire it up in one-way or the other.
